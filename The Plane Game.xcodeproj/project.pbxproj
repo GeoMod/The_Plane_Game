@@ -8,26 +8,28 @@
 
 /* Begin PBXBuildFile section */
 		180A6C9C22F4C9540046E330 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180A6C9B22F4C9540046E330 /* AppDelegate.swift */; };
-		180A6C9E22F4C9540046E330 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 180A6C9D22F4C9540046E330 /* GameScene.sks */; };
-		180A6CA022F4C9540046E330 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 180A6C9F22F4C9540046E330 /* Actions.sks */; };
+		180A6C9E22F4C9540046E330 /* LevelOne.sks in Resources */ = {isa = PBXBuildFile; fileRef = 180A6C9D22F4C9540046E330 /* LevelOne.sks */; };
 		180A6CA222F4C9540046E330 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180A6CA122F4C9540046E330 /* GameScene.swift */; };
 		180A6CA422F4C9540046E330 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180A6CA322F4C9540046E330 /* GameViewController.swift */; };
 		180A6CA722F4C9540046E330 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 180A6CA522F4C9540046E330 /* Main.storyboard */; };
 		180A6CA922F4C9550046E330 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 180A6CA822F4C9550046E330 /* Assets.xcassets */; };
 		180A6CAC22F4C9550046E330 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 180A6CAA22F4C9550046E330 /* LaunchScreen.storyboard */; };
+		1862F81622F66A9C009591BE /* CollisionTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1862F81522F66A9C009591BE /* CollisionTypes.swift */; };
+		1862F81822F66AE4009591BE /* PlayerScoreAndLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1862F81722F66AE4009591BE /* PlayerScoreAndLevel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		180A6C9822F4C9540046E330 /* The Plane Game.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "The Plane Game.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		180A6C9B22F4C9540046E330 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		180A6C9D22F4C9540046E330 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
-		180A6C9F22F4C9540046E330 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
+		180A6C9D22F4C9540046E330 /* LevelOne.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = LevelOne.sks; sourceTree = "<group>"; };
 		180A6CA122F4C9540046E330 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		180A6CA322F4C9540046E330 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		180A6CA622F4C9540046E330 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		180A6CA822F4C9550046E330 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		180A6CAB22F4C9550046E330 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		180A6CAD22F4C9550046E330 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1862F81522F66A9C009591BE /* CollisionTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollisionTypes.swift; sourceTree = "<group>"; };
+		1862F81722F66AE4009591BE /* PlayerScoreAndLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerScoreAndLevel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,8 +63,9 @@
 			isa = PBXGroup;
 			children = (
 				180A6C9B22F4C9540046E330 /* AppDelegate.swift */,
-				180A6C9D22F4C9540046E330 /* GameScene.sks */,
-				180A6C9F22F4C9540046E330 /* Actions.sks */,
+				1862F81422F66A69009591BE /* Levels */,
+				1862F81522F66A9C009591BE /* CollisionTypes.swift */,
+				1862F81722F66AE4009591BE /* PlayerScoreAndLevel.swift */,
 				180A6CA122F4C9540046E330 /* GameScene.swift */,
 				180A6CA322F4C9540046E330 /* GameViewController.swift */,
 				180A6CA522F4C9540046E330 /* Main.storyboard */,
@@ -71,6 +74,14 @@
 				180A6CAD22F4C9550046E330 /* Info.plist */,
 			);
 			path = "The Plane Game";
+			sourceTree = "<group>";
+		};
+		1862F81422F66A69009591BE /* Levels */ = {
+			isa = PBXGroup;
+			children = (
+				180A6C9D22F4C9540046E330 /* LevelOne.sks */,
+			);
+			path = Levels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -132,10 +143,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				180A6CA722F4C9540046E330 /* Main.storyboard in Resources */,
-				180A6C9E22F4C9540046E330 /* GameScene.sks in Resources */,
+				180A6C9E22F4C9540046E330 /* LevelOne.sks in Resources */,
 				180A6CA922F4C9550046E330 /* Assets.xcassets in Resources */,
 				180A6CAC22F4C9550046E330 /* LaunchScreen.storyboard in Resources */,
-				180A6CA022F4C9540046E330 /* Actions.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,6 +156,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1862F81822F66AE4009591BE /* PlayerScoreAndLevel.swift in Sources */,
+				1862F81622F66A9C009591BE /* CollisionTypes.swift in Sources */,
 				180A6CA222F4C9540046E330 /* GameScene.swift in Sources */,
 				180A6CA422F4C9540046E330 /* GameViewController.swift in Sources */,
 				180A6C9C22F4C9540046E330 /* AppDelegate.swift in Sources */,
