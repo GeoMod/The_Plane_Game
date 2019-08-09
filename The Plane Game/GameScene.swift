@@ -14,7 +14,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     weak var viewController: GameViewController!
     var motionManager = CMMotionManager()
-    let airplane = SKSpriteNode(imageNamed: "airplane")
+    var airplane = SKSpriteNode(imageNamed: "airplane")
+    var background: SKSpriteNode!
+    var deadTrees = [SKSpriteNode]()
+    var liveTrees = [SKSpriteNode]()
+    
     var airplaneAcceleration = CGVector(dx: 0, dy: 0)
     let maxPlayerSpeed: CGFloat = 200
     let maxPlayerAcceleration: CGFloat = 400
@@ -24,7 +28,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var lastUpdateTime: CFTimeInterval = 0
     var direction = SIMD2<Float>(x: 0, y: 0)
     
-    var playerStartingPosition = CGPoint()
+//    var playerStartingPosition = CGPoint()
     var playerLastKnownPosition = CGPoint()
     
     let degreesToRadians = CGFloat.pi / 180
@@ -42,14 +46,51 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
+    
     override func didMove(to view: SKView) {
         physicsWorld.contactDelegate = self
         physicsWorld.gravity = CGVector(dx: 0, dy: 0)
         
-        #warning("Need to check this in order for the game to work...I think.")
-        // Check implementation
-        // playerDelegate = player
-    }   
+        background = childNode(withName: "background") as? SKSpriteNode
+        
+        for tree in children {
+            if tree.name == "deadTree" {
+                if let tree = tree as? SKSpriteNode {
+                    deadTrees.append(tree)
+                }
+            } else if tree.name == "liveTree" {
+                if let tree = tree as? SKSpriteNode {
+                    liveTrees.append(tree)
+                }
+            }
+        }
+    }
+    
+    func loadAirplane(at position: CGPoint, addToScene: Bool) {
+        airplane.position = position
+        airplane.zPosition = 1
+        airplane.physicsBody = SKPhysicsBody(circleOfRadius: airplane.size.width / 2)
+        airplane.physicsBody?.categoryBitMask = CollisionTypes.airplane.rawValue
+        airplane.physicsBody?.contactTestBitMask = CollisionTypes.deadTree.rawValue | CollisionTypes.liveTree.rawValue
+        airplane.physicsBody?.collisionBitMask = CollisionTypes.deadTree.rawValue | CollisionTypes.liveTree.rawValue
+        airplane.physicsBody?.isDynamic = true
+        airplane.physicsBody?.linearDamping = 0.5
+        
+        if addToScene {
+            addChild(airplane)
+        } else {
+            return
+        }
+    }
+    
+    override func update(_ currentTime: TimeInterval) {
+        // Called before each frame is rendered
+        let deltaTime = max(1.0/30, currentTime - lastUpdateTime)
+        lastUpdateTime = currentTime
+        
+        updatePlayerAccelerationFromMotionManager()
+        updatePlayer(deltaTime)
+    }
     
     func didBegin(_ contact: SKPhysicsContact) {
         guard let nodeA = contact.bodyA.node else { return }
@@ -75,13 +116,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 nextLevel.viewController = self.viewController
                 self.viewController.gameScene = nextLevel
                 
-                let transition = SKTransition.doorway(withDuration: 1.5)
+                let transition = SKTransition.doorway(withDuration: 1.0)
                 self.view?.presentScene(nextLevel, transition: transition)
                 self.viewController.centerStartButtonTitle.setTitle("Tap To Start", for: .normal)
                 // Ensures game state is maintained at the scene transition.
                 self.viewController.isGamePlaying = false
             }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 self.viewController.centerStartButtonTitle.isHidden = false
                 self.viewController.playPauseButtonTitle.isHidden = true
             }
@@ -114,8 +155,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             viewController.livesLabel.text = "Lives: \(playerDelegate.playerLives)"
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                #warning("This we don't have yet.")
-//                self.loadAirplane(at: self.playerStartingPosition, addToScene: true)
+                self.loadAirplane(at: self.viewController.level1, addToScene: true)
             }
         } else if playerDelegate.playerLives == 0 {
             viewController.centerStartButtonTitle.setTitle("Game Over", for: .normal)
@@ -164,12 +204,4 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         airplane.zRotation = angle - 90 * degreesToRadians
     }
     
-    override func update(_ currentTime: TimeInterval) {
-        // Called before each frame is rendered
-        let deltaTime = max(1.0/30, currentTime - lastUpdateTime)
-        lastUpdateTime = currentTime
-        
-        updatePlayerAccelerationFromMotionManager()
-        updatePlayer(deltaTime)
-    }
 }

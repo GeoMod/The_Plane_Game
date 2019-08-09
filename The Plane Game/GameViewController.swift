@@ -17,22 +17,31 @@ class GameViewController: UIViewController {
     @IBOutlet weak var playPauseButtonTitle: UIButton!
     @IBOutlet weak var centerStartButtonTitle: UIButton!
     
-    var gameScene = GameScene()
-    
     var isGamePlaying = false
+    var gameScene: GameScene!
+    
+    let levelTracker = ScoreAndLevel()
+    
+    
+    let level1 = CGPoint(x: 819, y: 181)
+    // Define later levels.
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        centerStartButtonTitle.setTitle("Tap to Play", for: .normal)
+        
         if let view = self.view as! SKView? {
             // Load the SKScene from 'GameScene.sks'
-            if let scene = SKScene(fileNamed: "LevelOne") {
+            if let scene = SKScene(fileNamed: "Level" + String(levelTracker.currentLevel)) {
                 // Set the scale mode to scale to fit the window
                 scene.scaleMode = .aspectFill
                 
                 // Present the scene
                 view.presentScene(scene)
+                gameScene = scene as? GameScene
+                gameScene.viewController = self
             }
             
             view.ignoresSiblingOrder = true
@@ -50,7 +59,8 @@ class GameViewController: UIViewController {
             beginGamePlay()
         case true:
             // Game is running but we want to pause.
-            playPauseButtonTitle.setBackgroundImage(UIImage(systemName: "play.circle.fill"), for: .normal)
+            #warning("iOS13")
+//            playPauseButtonTitle.setBackgroundImage(UIImage(systemName: "play.circle.fill"), for: .normal)
             centerStartButtonTitle.setTitle("Paused", for: .normal)
             centerStartButtonTitle.isHidden = false
             view.alpha = 0.5
@@ -68,17 +78,15 @@ class GameViewController: UIViewController {
     }
     
     func beginGamePlay() {
-        playPauseButtonTitle.setBackgroundImage(UIImage(systemName: "pause.circle.fill"), for: .normal)
+        #warning("iOS13")
+//        playPauseButtonTitle.setBackgroundImage(UIImage(systemName: "pause.circle.fill"), for: .normal)
         playPauseButtonTitle.isHidden = false
         
         centerStartButtonTitle.isHidden = true
         centerStartButtonTitle.setTitle("Paused", for: .normal)
         view.alpha = 1.0
         
-        // From old code.
-        // But still need a means of loading the airplane back into the scene after pausing the game, or at scene/level transition.
-//        gameScene.loadAirplane(at: gameScene.playerLastKnownPosition, addToScene: true)
-        
+        gameScene.loadAirplane(at: level1, addToScene: true)
         gameScene.motionManager.startAccelerometerUpdates()
         isGamePlaying.toggle()
     }

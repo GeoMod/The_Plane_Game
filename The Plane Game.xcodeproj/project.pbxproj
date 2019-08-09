@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		180A6C9C22F4C9540046E330 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180A6C9B22F4C9540046E330 /* AppDelegate.swift */; };
-		180A6C9E22F4C9540046E330 /* LevelOne.sks in Resources */ = {isa = PBXBuildFile; fileRef = 180A6C9D22F4C9540046E330 /* LevelOne.sks */; };
+		180A6C9E22F4C9540046E330 /* Level1.sks in Resources */ = {isa = PBXBuildFile; fileRef = 180A6C9D22F4C9540046E330 /* Level1.sks */; };
 		180A6CA222F4C9540046E330 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180A6CA122F4C9540046E330 /* GameScene.swift */; };
 		180A6CA422F4C9540046E330 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180A6CA322F4C9540046E330 /* GameViewController.swift */; };
 		180A6CA722F4C9540046E330 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 180A6CA522F4C9540046E330 /* Main.storyboard */; };
@@ -16,12 +16,16 @@
 		180A6CAC22F4C9550046E330 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 180A6CAA22F4C9550046E330 /* LaunchScreen.storyboard */; };
 		1862F81622F66A9C009591BE /* CollisionTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1862F81522F66A9C009591BE /* CollisionTypes.swift */; };
 		1862F81822F66AE4009591BE /* PlayerScoreAndLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1862F81722F66AE4009591BE /* PlayerScoreAndLevel.swift */; };
+		18A36ABB22FE1FB100B41952 /* SmokeThrust.sks in Resources */ = {isa = PBXBuildFile; fileRef = 18A36ABA22FE1FB100B41952 /* SmokeThrust.sks */; };
+		18A36ABF22FE1FBA00B41952 /* TreeFire.sks in Resources */ = {isa = PBXBuildFile; fileRef = 18A36ABC22FE1FBA00B41952 /* TreeFire.sks */; };
+		18A36AC022FE1FBA00B41952 /* TowerFireExplosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = 18A36ABD22FE1FBA00B41952 /* TowerFireExplosion.sks */; };
+		18A36AC122FE1FBA00B41952 /* GroundImpact.sks in Resources */ = {isa = PBXBuildFile; fileRef = 18A36ABE22FE1FBA00B41952 /* GroundImpact.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		180A6C9822F4C9540046E330 /* The Plane Game.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "The Plane Game.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		180A6C9B22F4C9540046E330 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		180A6C9D22F4C9540046E330 /* LevelOne.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = LevelOne.sks; sourceTree = "<group>"; };
+		180A6C9D22F4C9540046E330 /* Level1.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level1.sks; sourceTree = "<group>"; };
 		180A6CA122F4C9540046E330 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		180A6CA322F4C9540046E330 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		180A6CA622F4C9540046E330 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -30,6 +34,10 @@
 		180A6CAD22F4C9550046E330 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1862F81522F66A9C009591BE /* CollisionTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollisionTypes.swift; sourceTree = "<group>"; };
 		1862F81722F66AE4009591BE /* PlayerScoreAndLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerScoreAndLevel.swift; sourceTree = "<group>"; };
+		18A36ABA22FE1FB100B41952 /* SmokeThrust.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SmokeThrust.sks; sourceTree = "<group>"; };
+		18A36ABC22FE1FBA00B41952 /* TreeFire.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TreeFire.sks; sourceTree = "<group>"; };
+		18A36ABD22FE1FBA00B41952 /* TowerFireExplosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TowerFireExplosion.sks; sourceTree = "<group>"; };
+		18A36ABE22FE1FBA00B41952 /* GroundImpact.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GroundImpact.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +72,7 @@
 			children = (
 				180A6C9B22F4C9540046E330 /* AppDelegate.swift */,
 				1862F81422F66A69009591BE /* Levels */,
+				18A36AB922FE1F8D00B41952 /* Particle Files */,
 				1862F81522F66A9C009591BE /* CollisionTypes.swift */,
 				1862F81722F66AE4009591BE /* PlayerScoreAndLevel.swift */,
 				180A6CA122F4C9540046E330 /* GameScene.swift */,
@@ -79,9 +88,20 @@
 		1862F81422F66A69009591BE /* Levels */ = {
 			isa = PBXGroup;
 			children = (
-				180A6C9D22F4C9540046E330 /* LevelOne.sks */,
+				180A6C9D22F4C9540046E330 /* Level1.sks */,
 			);
 			path = Levels;
+			sourceTree = "<group>";
+		};
+		18A36AB922FE1F8D00B41952 /* Particle Files */ = {
+			isa = PBXGroup;
+			children = (
+				18A36ABA22FE1FB100B41952 /* SmokeThrust.sks */,
+				18A36ABE22FE1FBA00B41952 /* GroundImpact.sks */,
+				18A36ABD22FE1FBA00B41952 /* TowerFireExplosion.sks */,
+				18A36ABC22FE1FBA00B41952 /* TreeFire.sks */,
+			);
+			path = "Particle Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -143,7 +163,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				180A6CA722F4C9540046E330 /* Main.storyboard in Resources */,
-				180A6C9E22F4C9540046E330 /* LevelOne.sks in Resources */,
+				18A36AC022FE1FBA00B41952 /* TowerFireExplosion.sks in Resources */,
+				180A6C9E22F4C9540046E330 /* Level1.sks in Resources */,
+				18A36ABB22FE1FB100B41952 /* SmokeThrust.sks in Resources */,
+				18A36AC122FE1FBA00B41952 /* GroundImpact.sks in Resources */,
+				18A36ABF22FE1FBA00B41952 /* TreeFire.sks in Resources */,
 				180A6CA922F4C9550046E330 /* Assets.xcassets in Resources */,
 				180A6CAC22F4C9550046E330 /* LaunchScreen.storyboard in Resources */,
 			);
@@ -307,6 +331,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4Q332864D3;
 				INFOPLIST_FILE = "The Plane Game/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -325,6 +350,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4Q332864D3;
 				INFOPLIST_FILE = "The Plane Game/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

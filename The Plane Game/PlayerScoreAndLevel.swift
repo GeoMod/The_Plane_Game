@@ -12,7 +12,7 @@ protocol AdjustScoreDelegate {
     func update(level: Int)
     func update(lives: Int)
     
-    var currentLevel: Int { get set}
+    var currentLevel: Int { get set }
     var playerLives: Int { get set }
     var currentScore: Int { get set }
 }
