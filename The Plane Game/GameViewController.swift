@@ -21,6 +21,7 @@ class GameViewController: UIViewController {
     var gameScene: GameScene!
     
     let levelTracker = ScoreAndLevel()
+    let planePosition = StartingPositions()
     
     
     let level1 = CGPoint(x: 819, y: 181)
@@ -59,6 +60,7 @@ class GameViewController: UIViewController {
             beginGamePlay()
         case true:
             // Game is running but we want to pause.
+            
             #warning("iOS13")
 //            playPauseButtonTitle.setBackgroundImage(UIImage(systemName: "play.circle.fill"), for: .normal)
             centerStartButtonTitle.setTitle("Paused", for: .normal)
@@ -86,7 +88,7 @@ class GameViewController: UIViewController {
         centerStartButtonTitle.setTitle("Paused", for: .normal)
         view.alpha = 1.0
         
-        gameScene.loadAirplane(at: level1, addToScene: true)
+        gameScene.loadAirplane(at: planePosition.level1, addToScene: true)
         gameScene.motionManager.startAccelerometerUpdates()
         isGamePlaying.toggle()
     }

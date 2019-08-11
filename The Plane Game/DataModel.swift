@@ -6,7 +6,8 @@
 //  Copyright © 2019 Impulse Coupled Dev. All rights reserved.
 //
 
-import Foundation
+
+import SpriteKit
 
 enum CollisionTypes: UInt32 {
     case airplane = 1
@@ -17,3 +18,9 @@ enum CollisionTypes: UInt32 {
     case deadTree = 32
     case wall = 64
 }
+
+
+struct StartingPositions {
+    let level1 = CGPoint(x: 819, y: 181)
+}
+

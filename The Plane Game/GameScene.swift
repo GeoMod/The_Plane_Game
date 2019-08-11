@@ -28,7 +28,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var lastUpdateTime: CFTimeInterval = 0
     var direction = SIMD2<Float>(x: 0, y: 0)
     
-//    var playerStartingPosition = CGPoint()
     var playerLastKnownPosition = CGPoint()
     
     let degreesToRadians = CGFloat.pi / 180
@@ -155,7 +154,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             viewController.livesLabel.text = "Lives: \(playerDelegate.playerLives)"
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                self.loadAirplane(at: self.viewController.level1, addToScene: true)
+                self.loadAirplane(at: self.viewController.planePosition.level1, addToScene: true)
             }
         } else if playerDelegate.playerLives == 0 {
             viewController.centerStartButtonTitle.setTitle("Game Over", for: .normal)
