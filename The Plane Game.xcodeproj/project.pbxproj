@@ -14,8 +14,8 @@
 		180A6CA722F4C9540046E330 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 180A6CA522F4C9540046E330 /* Main.storyboard */; };
 		180A6CA922F4C9550046E330 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 180A6CA822F4C9550046E330 /* Assets.xcassets */; };
 		180A6CAC22F4C9550046E330 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 180A6CAA22F4C9550046E330 /* LaunchScreen.storyboard */; };
+		182B6C8D2300569E001AC480 /* Level2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 182B6C8C2300569E001AC480 /* Level2.sks */; };
 		1862F81622F66A9C009591BE /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1862F81522F66A9C009591BE /* DataModel.swift */; };
-		1862F81822F66AE4009591BE /* PlayerScoreAndLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1862F81722F66AE4009591BE /* PlayerScoreAndLevel.swift */; };
 		18A36ABB22FE1FB100B41952 /* SmokeThrust.sks in Resources */ = {isa = PBXBuildFile; fileRef = 18A36ABA22FE1FB100B41952 /* SmokeThrust.sks */; };
 		18A36ABF22FE1FBA00B41952 /* TreeFire.sks in Resources */ = {isa = PBXBuildFile; fileRef = 18A36ABC22FE1FBA00B41952 /* TreeFire.sks */; };
 		18A36AC022FE1FBA00B41952 /* TowerFireExplosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = 18A36ABD22FE1FBA00B41952 /* TowerFireExplosion.sks */; };
@@ -33,8 +33,8 @@
 		180A6CAB22F4C9550046E330 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		180A6CAD22F4C9550046E330 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		182B6C8B22FF4F57001AC480 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		182B6C8C2300569E001AC480 /* Level2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level2.sks; sourceTree = "<group>"; };
 		1862F81522F66A9C009591BE /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
-		1862F81722F66AE4009591BE /* PlayerScoreAndLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerScoreAndLevel.swift; sourceTree = "<group>"; };
 		18A36ABA22FE1FB100B41952 /* SmokeThrust.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SmokeThrust.sks; sourceTree = "<group>"; };
 		18A36ABC22FE1FBA00B41952 /* TreeFire.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TreeFire.sks; sourceTree = "<group>"; };
 		18A36ABD22FE1FBA00B41952 /* TowerFireExplosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TowerFireExplosion.sks; sourceTree = "<group>"; };
@@ -76,7 +76,6 @@
 				1862F81422F66A69009591BE /* Levels */,
 				18A36AB922FE1F8D00B41952 /* Particle Files */,
 				1862F81522F66A9C009591BE /* DataModel.swift */,
-				1862F81722F66AE4009591BE /* PlayerScoreAndLevel.swift */,
 				180A6CA122F4C9540046E330 /* GameScene.swift */,
 				180A6CA322F4C9540046E330 /* GameViewController.swift */,
 				180A6CA522F4C9540046E330 /* Main.storyboard */,
@@ -91,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				180A6C9D22F4C9540046E330 /* Level1.sks */,
+				182B6C8C2300569E001AC480 /* Level2.sks */,
 			);
 			path = Levels;
 			sourceTree = "<group>";
@@ -171,6 +171,7 @@
 				18A36AC122FE1FBA00B41952 /* GroundImpact.sks in Resources */,
 				18A36ABF22FE1FBA00B41952 /* TreeFire.sks in Resources */,
 				180A6CA922F4C9550046E330 /* Assets.xcassets in Resources */,
+				182B6C8D2300569E001AC480 /* Level2.sks in Resources */,
 				180A6CAC22F4C9550046E330 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -182,7 +183,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1862F81822F66AE4009591BE /* PlayerScoreAndLevel.swift in Sources */,
 				1862F81622F66A9C009591BE /* DataModel.swift in Sources */,
 				180A6CA222F4C9540046E330 /* GameScene.swift in Sources */,
 				180A6CA422F4C9540046E330 /* GameViewController.swift in Sources */,

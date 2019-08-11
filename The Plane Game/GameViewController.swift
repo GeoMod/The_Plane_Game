@@ -32,7 +32,11 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
         
         centerStartButtonTitle.setTitle("Tap to Play", for: .normal)
-        
+        loadLevel()
+    }
+    
+    // Load the scene and level
+    func loadLevel() {
         if let view = self.view as! SKView? {
             // Load the SKScene from 'GameScene.sks'
             if let scene = SKScene(fileNamed: "Level" + String(levelTracker.currentLevel)) {
