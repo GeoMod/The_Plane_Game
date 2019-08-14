@@ -64,14 +64,13 @@ class GameViewController: UIViewController {
             beginGamePlay()
         case true:
             // Game is running but we want to pause.
-            
-            #warning("iOS13")
+            // Use in iOS13
 //            playPauseButtonTitle.setBackgroundImage(UIImage(systemName: "play.circle.fill"), for: .normal)
             centerStartButtonTitle.setTitle("Paused", for: .normal)
             centerStartButtonTitle.isHidden = false
             view.alpha = 0.5
-            gameScene.airplane.removeFromParent()
-            gameScene.airplane.position = gameScene.playerLastKnownPosition
+            gameScene.player.removeFromParent()
+            gameScene.player.position = gameScene.playerLastKnownPosition
             gameScene.motionManager.stopAccelerometerUpdates()
             isGamePlaying.toggle()
             
@@ -84,7 +83,7 @@ class GameViewController: UIViewController {
     }
     
     func beginGamePlay() {
-        #warning("iOS13")
+        // Use in iOS13
 //        playPauseButtonTitle.setBackgroundImage(UIImage(systemName: "pause.circle.fill"), for: .normal)
         playPauseButtonTitle.isHidden = false
         

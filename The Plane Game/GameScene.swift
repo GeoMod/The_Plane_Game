@@ -11,12 +11,9 @@ import GameplayKit
 import CoreMotion
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
-    
-    let acceleration = Acceleration()
-        
     weak var viewController: GameViewController!
     var motionManager = CMMotionManager()
-    var airplane = SKSpriteNode(imageNamed: "airplane")
+    var player = SKSpriteNode(imageNamed: "airplane")
     
     var airplaneAcceleration = CGVector(dx: 0, dy: 0)
     let maxPlayerSpeed: CGFloat = 200
@@ -51,17 +48,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func loadAirplane(at position: CGPoint, addToScene: Bool) {
-        airplane.position = position
-        airplane.zPosition = 1
-        airplane.physicsBody = SKPhysicsBody(circleOfRadius: airplane.size.width / 2)
-        airplane.physicsBody?.categoryBitMask = CollisionTypes.airplane.rawValue
-        airplane.physicsBody?.contactTestBitMask = CollisionTypes.deadTree.rawValue | CollisionTypes.liveTree.rawValue
-        airplane.physicsBody?.collisionBitMask = CollisionTypes.deadTree.rawValue | CollisionTypes.liveTree.rawValue
-        airplane.physicsBody?.isDynamic = true
-        airplane.physicsBody?.linearDamping = 0.5
+        player.position = position
+        player.zPosition = 1
+        player.physicsBody = SKPhysicsBody(circleOfRadius: player.size.width / 2)
+        player.physicsBody?.categoryBitMask = CollisionTypes.airplane.rawValue
+        player.physicsBody?.contactTestBitMask = CollisionTypes.deadTree.rawValue | CollisionTypes.liveTree.rawValue
+        player.physicsBody?.collisionBitMask = CollisionTypes.deadTree.rawValue | CollisionTypes.liveTree.rawValue
+        player.physicsBody?.isDynamic = true
+        player.physicsBody?.linearDamping = 0.5
         
         if addToScene {
-            addChild(airplane)
+            addChild(player)
         } else {
             return
         }
@@ -73,18 +70,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let deltaTime = max(1.0/30, currentTime - lastUpdateTime)
         lastUpdateTime = currentTime
         
-        
-//        updatePlayerAccelerationFromMotionManager()
-//        updatePlayer(deltaTime)
+        updatePlayerAccelerationFromMotionManager()
+        updatePlayer(deltaTime)
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
         guard let nodeA = contact.bodyA.node else { return }
         guard let nodeB = contact.bodyB.node else { return }
         
-        if nodeA == airplane {
+        if nodeA == player {
             playerCollided(with: nodeB)
-        } else if nodeB == airplane {
+        } else if nodeB == player {
             playerCollided(with: nodeA)
         }
     }
@@ -116,7 +112,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             return
         } else if node.name == "deadTree" || node.name == "liveTree" {
             if let fireExplosion = SKEmitterNode(fileNamed: "TowerFireExplosion") {
-                fireExplosion.position = airplane.position
+                fireExplosion.position = player.position
                 addChild(fireExplosion)
                 playerDelegate.update(score: -100)
                 viewController.scoreLabel.text = "Score: \(playerDelegate.currentScore)"
@@ -130,13 +126,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         } else if node.name == "leftRunwayEdge" || node.name == "rightRunwayEdge" {
             if let groundImpact = SKEmitterNode(fileNamed: "GroundImpact") {
-                groundImpact.position = airplane.position
+                groundImpact.position = player.position
                 addChild(groundImpact)
                 playerDelegate.update(score: -100)
                 viewController.scoreLabel.text = "Score: \(playerDelegate.currentScore)"
             }
         }
-        airplane.removeFromParent()
+        player.removeFromParent()
         if playerDelegate.playerLives > 0 {
             playerDelegate.update(lives: -1)
             viewController.livesLabel.text = "Lives: \(playerDelegate.playerLives)"
@@ -159,36 +155,36 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     
     // MARK: - Player acceleration
-//    func updatePlayerAccelerationFromMotionManager() {
-//        guard let acceleration = motionManager.accelerometerData?.acceleration else { return }
-//        let filterFactor = 0.9
-//
-//        accelerometerXYZ.x = acceleration.x * filterFactor + accelerometerXYZ.x * (1 - filterFactor)
-//        accelerometerXYZ.y = acceleration.y * filterFactor + accelerometerXYZ.y * (1 - filterFactor)
-//
-//        airplaneAcceleration.dx = CGFloat(accelerometerXYZ.y) * -maxPlayerAcceleration
-//        airplaneAcceleration.dy = CGFloat(accelerometerXYZ.x) * maxPlayerAcceleration
-//        
-//    }
-//    
-//    func updatePlayer(_ dt: CFTimeInterval) {
-//        playerVelocity.dx = playerVelocity.dx + airplaneAcceleration.dx * CGFloat(dt)
-//        playerVelocity.dy = playerVelocity.dy + airplaneAcceleration.dy * CGFloat(dt)
-//        
-//        playerVelocity.dx = max(-maxPlayerSpeed, min(maxPlayerSpeed, playerVelocity.dx))
-//        playerVelocity.dy = max(-maxPlayerSpeed, min(maxPlayerSpeed, playerVelocity.dy))
-//        
-//        var newX = airplane.position.x + playerVelocity.dx * CGFloat(dt)
-//        var newY = airplane.position.y + playerVelocity.dy * CGFloat(dt)
-//        
-//        newX = min(size.width, max(0, newX))
-//        newY = min(size.height, max(0, newY))
-//        
-//        airplane.position = CGPoint(x: newX, y: newY)
-//        playerLastKnownPosition = airplane.position
-//        
-//        let angle = atan2(playerVelocity.dy, playerVelocity.dx)
-//        airplane.zRotation = angle - 90 * degreesToRadians
-//    }
+    func updatePlayerAccelerationFromMotionManager() {
+        guard let acceleration = motionManager.accelerometerData?.acceleration else { return }
+        let filterFactor = 0.9
+
+        accelerometerXYZ.x = acceleration.x * filterFactor + accelerometerXYZ.x * (1 - filterFactor)
+        accelerometerXYZ.y = acceleration.y * filterFactor + accelerometerXYZ.y * (1 - filterFactor)
+
+        airplaneAcceleration.dx = CGFloat(accelerometerXYZ.y) * -maxPlayerAcceleration
+        airplaneAcceleration.dy = CGFloat(accelerometerXYZ.x) * maxPlayerAcceleration
+        
+    }
+    
+    func updatePlayer(_ dt: CFTimeInterval) {
+        playerVelocity.dx = playerVelocity.dx + airplaneAcceleration.dx * CGFloat(dt)
+        playerVelocity.dy = playerVelocity.dy + airplaneAcceleration.dy * CGFloat(dt)
+        
+        playerVelocity.dx = max(-maxPlayerSpeed, min(maxPlayerSpeed, playerVelocity.dx))
+        playerVelocity.dy = max(-maxPlayerSpeed, min(maxPlayerSpeed, playerVelocity.dy))
+        
+        var newX = player.position.x + playerVelocity.dx * CGFloat(dt)
+        var newY = player.position.y + playerVelocity.dy * CGFloat(dt)
+        
+        newX = min(size.width, max(0, newX))
+        newY = min(size.height, max(0, newY))
+        
+        player.position = CGPoint(x: newX, y: newY)
+        playerLastKnownPosition = player.position
+        
+        let angle = atan2(playerVelocity.dy, playerVelocity.dx)
+        player.zRotation = angle - 90 * degreesToRadians
+    }
     
 }

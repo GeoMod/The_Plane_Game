@@ -8,7 +8,6 @@
 
 import SpriteKit
 import CoreMotion
-import Foundation
 
 protocol UpdateAcceleration {
     func updatePlayerAccelerationFromMotionManager()
@@ -18,14 +17,14 @@ protocol UpdateAcceleration {
 class Acceleration: SKScene, SKPhysicsContactDelegate, UpdateAcceleration {
     var motionManager = CMMotionManager()
     
-    var airplaneAcceleration = CGVector(dx: 0, dy: 0)
+    var playerAcceleration = CGVector(dx: 0, dy: 0)
     let maxPlayerSpeed: CGFloat = 200
     let maxPlayerAcceleration: CGFloat = 400
     var accelerometerXYZ = CMAcceleration(x: 0, y: 0, z: 0)
     
     var playerVelocity = CGVector(dx: 0, dy: 0)
     
-    var airplane = SKSpriteNode(imageNamed: "airplane")
+    var player = SKSpriteNode(imageNamed: "airplane")
     
     var playerLastKnownPosition = CGPoint()
     
@@ -38,28 +37,28 @@ class Acceleration: SKScene, SKPhysicsContactDelegate, UpdateAcceleration {
         accelerometerXYZ.x = acceleration.x * filterFactor + accelerometerXYZ.x * (1 - filterFactor)
         accelerometerXYZ.y = acceleration.y * filterFactor + accelerometerXYZ.y * (1 - filterFactor)
 
-        airplaneAcceleration.dx = CGFloat(accelerometerXYZ.y) * -maxPlayerAcceleration
-        airplaneAcceleration.dy = CGFloat(accelerometerXYZ.x) * maxPlayerAcceleration
+        playerAcceleration.dx = CGFloat(accelerometerXYZ.y) * -maxPlayerAcceleration
+        playerAcceleration.dy = CGFloat(accelerometerXYZ.x) * maxPlayerAcceleration
         
     }
     
     func updatePlayer(_ dt: CFTimeInterval) {
-        playerVelocity.dx = playerVelocity.dx + airplaneAcceleration.dx * CGFloat(dt)
-        playerVelocity.dy = playerVelocity.dy + airplaneAcceleration.dy * CGFloat(dt)
+        playerVelocity.dx = playerVelocity.dx + playerAcceleration.dx * CGFloat(dt)
+        playerVelocity.dy = playerVelocity.dy + playerAcceleration.dy * CGFloat(dt)
         
         playerVelocity.dx = max(-maxPlayerSpeed, min(maxPlayerSpeed, playerVelocity.dx))
         playerVelocity.dy = max(-maxPlayerSpeed, min(maxPlayerSpeed, playerVelocity.dy))
         
-        var newX = airplane.position.x + playerVelocity.dx * CGFloat(dt)
-        var newY = airplane.position.y + playerVelocity.dy * CGFloat(dt)
+        var newX = player.position.x + playerVelocity.dx * CGFloat(dt)
+        var newY = player.position.y + playerVelocity.dy * CGFloat(dt)
         
         newX = min(size.width, max(0, newX))
         newY = min(size.height, max(0, newY))
         
-        airplane.position = CGPoint(x: newX, y: newY)
-        playerLastKnownPosition = airplane.position
+        player.position = CGPoint(x: newX, y: newY)
+        playerLastKnownPosition = player.position
         
         let angle = atan2(playerVelocity.dy, playerVelocity.dx)
-        airplane.zRotation = angle - 90 * degreesToRadians
+        player.zRotation = angle - 90 * degreesToRadians
     }
 }
