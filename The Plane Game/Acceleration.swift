@@ -24,8 +24,6 @@ class Acceleration: SKScene, SKPhysicsContactDelegate, UpdateAcceleration {
     
     var playerVelocity = CGVector(dx: 0, dy: 0)
     
-    var player = SKSpriteNode(imageNamed: "airplane")
-    
     var playerLastKnownPosition = CGPoint()
     
     let degreesToRadians = CGFloat.pi / 180

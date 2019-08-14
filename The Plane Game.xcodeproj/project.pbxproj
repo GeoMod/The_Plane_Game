@@ -34,7 +34,6 @@
 		180A6CA822F4C9550046E330 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		180A6CAB22F4C9550046E330 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		180A6CAD22F4C9550046E330 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		182B6C8B22FF4F57001AC480 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		182B6C8C2300569E001AC480 /* LevelTwo.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = LevelTwo.sks; sourceTree = "<group>"; };
 		182D9C7623022FC2004C3424 /* Acceleration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Acceleration.swift; sourceTree = "<group>"; };
 		1862F81522F66A9C009591BE /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
@@ -59,7 +58,6 @@
 		180A6C8F22F4C9540046E330 = {
 			isa = PBXGroup;
 			children = (
-				182B6C8B22FF4F57001AC480 /* MyPlayground.playground */,
 				180A6C9A22F4C9540046E330 /* The Plane Game */,
 				180A6C9922F4C9540046E330 /* Products */,
 			);
