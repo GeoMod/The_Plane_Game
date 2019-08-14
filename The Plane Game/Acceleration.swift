@@ -11,7 +11,7 @@ import CoreMotion
 
 protocol UpdateAcceleration {
     func updatePlayerAccelerationFromMotionManager()
-    func updatePlayer(_ dt: CFTimeInterval)
+    func update(player: SKSpriteNode,at timeInterval: CFTimeInterval)
 }
 
 class Acceleration: SKScene, SKPhysicsContactDelegate, UpdateAcceleration {
@@ -42,15 +42,15 @@ class Acceleration: SKScene, SKPhysicsContactDelegate, UpdateAcceleration {
         
     }
     
-    func updatePlayer(_ dt: CFTimeInterval) {
-        playerVelocity.dx = playerVelocity.dx + playerAcceleration.dx * CGFloat(dt)
-        playerVelocity.dy = playerVelocity.dy + playerAcceleration.dy * CGFloat(dt)
+    func update(player: SKSpriteNode,at timeInterval: CFTimeInterval) {
+        playerVelocity.dx = playerVelocity.dx + playerAcceleration.dx * CGFloat(timeInterval)
+        playerVelocity.dy = playerVelocity.dy + playerAcceleration.dy * CGFloat(timeInterval)
         
         playerVelocity.dx = max(-maxPlayerSpeed, min(maxPlayerSpeed, playerVelocity.dx))
         playerVelocity.dy = max(-maxPlayerSpeed, min(maxPlayerSpeed, playerVelocity.dy))
         
-        var newX = player.position.x + playerVelocity.dx * CGFloat(dt)
-        var newY = player.position.y + playerVelocity.dy * CGFloat(dt)
+        var newX = player.position.x + playerVelocity.dx * CGFloat(timeInterval)
+        var newY = player.position.y + playerVelocity.dy * CGFloat(timeInterval)
         
         newX = min(size.width, max(0, newX))
         newY = min(size.height, max(0, newY))
