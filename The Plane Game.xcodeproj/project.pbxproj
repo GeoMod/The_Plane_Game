@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		180A6C9C22F4C9540046E330 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180A6C9B22F4C9540046E330 /* AppDelegate.swift */; };
-		180A6C9E22F4C9540046E330 /* LevelOne.sks in Resources */ = {isa = PBXBuildFile; fileRef = 180A6C9D22F4C9540046E330 /* LevelOne.sks */; };
+		180A6C9E22F4C9540046E330 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 180A6C9D22F4C9540046E330 /* GameScene.sks */; };
 		180A6CA222F4C9540046E330 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180A6CA122F4C9540046E330 /* GameScene.swift */; };
 		180A6CA422F4C9540046E330 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180A6CA322F4C9540046E330 /* GameViewController.swift */; };
 		180A6CA722F4C9540046E330 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 180A6CA522F4C9540046E330 /* Main.storyboard */; };
@@ -27,7 +27,7 @@
 /* Begin PBXFileReference section */
 		180A6C9822F4C9540046E330 /* The Plane Game.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "The Plane Game.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		180A6C9B22F4C9540046E330 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		180A6C9D22F4C9540046E330 /* LevelOne.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = LevelOne.sks; sourceTree = "<group>"; };
+		180A6C9D22F4C9540046E330 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		180A6CA122F4C9540046E330 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		180A6CA322F4C9540046E330 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		180A6CA622F4C9540046E330 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -93,7 +93,7 @@
 		1862F81422F66A69009591BE /* Level Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				180A6C9D22F4C9540046E330 /* LevelOne.sks */,
+				180A6C9D22F4C9540046E330 /* GameScene.sks */,
 				182B6C8C2300569E001AC480 /* LevelTwo.sks */,
 			);
 			path = "Level Scenes";
@@ -170,7 +170,7 @@
 			files = (
 				180A6CA722F4C9540046E330 /* Main.storyboard in Resources */,
 				18A36AC022FE1FBA00B41952 /* TowerFireExplosion.sks in Resources */,
-				180A6C9E22F4C9540046E330 /* LevelOne.sks in Resources */,
+				180A6C9E22F4C9540046E330 /* GameScene.sks in Resources */,
 				18A36ABB22FE1FB100B41952 /* SmokeThrust.sks in Resources */,
 				18A36AC122FE1FBA00B41952 /* GroundImpact.sks in Resources */,
 				18A36ABF22FE1FBA00B41952 /* TreeFire.sks in Resources */,

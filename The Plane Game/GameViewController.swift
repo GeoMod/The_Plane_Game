@@ -21,8 +21,7 @@ class GameViewController: UIViewController {
     var gameScene: GameScene!
     
     let levelTracker = ScoreAndLevel()
-    let planePosition = StartingPositions()
-    
+//    let planePosition = StartingPositions()
     
     let level1 = CGPoint(x: 819, y: 181)
     // Define later levels.
@@ -39,7 +38,7 @@ class GameViewController: UIViewController {
     func loadLevel() {
         if let view = self.view as! SKView? {
             // Load the SKScene from 'GameScene.sks'
-            if let scene = SKScene(fileNamed: "LevelOne") {
+            if let scene = SKScene(fileNamed: "GameScene") {
                 // Set the scale mode to scale to fit the window
                 scene.scaleMode = .aspectFill
                 
@@ -91,11 +90,10 @@ class GameViewController: UIViewController {
         centerStartButtonTitle.setTitle("Paused", for: .normal)
         view.alpha = 1.0
         
-        gameScene.loadAirplane(at: planePosition.level1, addToScene: true)
+        gameScene.loadAirplane(at: level1, addToScene: true)
         gameScene.motionManager.startAccelerometerUpdates()
         isGamePlaying.toggle()
     }
-    
     
 
     override var shouldAutorotate: Bool {
