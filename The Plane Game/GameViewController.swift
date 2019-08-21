@@ -21,7 +21,6 @@ class GameViewController: UIViewController {
     var gameScene: GameScene!
     
     let levelTracker = ScoreAndLevel()
-//    let planePosition = StartingPositions()
     
     let level1 = CGPoint(x: 819, y: 181)
     // Define later levels.
