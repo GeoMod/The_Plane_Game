@@ -16,17 +16,16 @@ class GameViewController: UIViewController {
     @IBOutlet weak var playPauseButtonTitle: UIButton!
     @IBOutlet weak var centerStartButtonTitle: UIButton!
     
-    var isGamePlaying = false
+    var scoreDelegate: AdjustScoreDelegate!
     var gameScene: GameScene!
     
-    let levelTracker = ScoreAndLevel()
+    var isGamePlaying = false
     
-    let level1 = CGPoint(x: 819, y: 181)
-    // Define later levels.
-    
+    let planeStartingPosition = CGPoint(x: 819, y: 181)
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        scoreDelegate = Score()
         
         centerStartButtonTitle.setTitle("Tap to Play", for: .normal)
         loadLevel()
@@ -35,8 +34,9 @@ class GameViewController: UIViewController {
     // Load the scene and level
     func loadLevel() {
         if let view = self.view as! SKView? {
+            print("ViewDidLoad")
             // Load the SKScene from 'GameScene.sks'
-            if let scene = SKScene(fileNamed: "GameScene") {
+            if let scene = SKScene(fileNamed: "LevelOne") {
                 // Set the scale mode to scale to fit the window
                 scene.scaleMode = .aspectFill
                 
@@ -88,7 +88,7 @@ class GameViewController: UIViewController {
         centerStartButtonTitle.setTitle("Paused", for: .normal)
         view.alpha = 1.0
         
-        gameScene.loadAirplane(at: level1, addToScene: true)
+        gameScene.loadAirplane(at: planeStartingPosition, addToScene: true)
         gameScene.isPaused = false
         gameScene.motionManager.startAccelerometerUpdates()
         isGamePlaying.toggle()

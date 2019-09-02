@@ -20,11 +20,6 @@ enum CollisionTypes: UInt32 {
 }
 
 
-struct StartingPositions {
-    let level1 = CGPoint(x: 819, y: 181)
-}
-
-
 protocol AdjustScoreDelegate {
     func updateScore(amount: Int)
     func updateLevel(amount: Int)
@@ -32,20 +27,20 @@ protocol AdjustScoreDelegate {
 }
 
 
-struct ScoreAndLevel: AdjustScoreDelegate {
-    static var currentLevel = 1
+struct Score: AdjustScoreDelegate {
+    static var currentLevel = 0
     static var playerLives = 3
     static var currentScore = 0
         
     func updateLevel(amount: Int) {
-        ScoreAndLevel.currentLevel += amount
+        Score.currentLevel += amount
     }
     
     func updateLives(amount: Int) {
-        ScoreAndLevel.playerLives += amount
+        Score.playerLives += amount
     }
     
     func updateScore(amount: Int) {
-        ScoreAndLevel.currentScore += amount
+        Score.currentScore += amount
     }
 }
