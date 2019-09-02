@@ -6,9 +6,8 @@
 //  Copyright © 2019 Impulse Coupled Dev. All rights reserved.
 //
 
-import UIKit
 import SpriteKit
-import GameplayKit
+import UIKit
 
 class GameViewController: UIViewController {
     
@@ -70,8 +69,8 @@ class GameViewController: UIViewController {
             gameScene.player.removeFromParent()
             gameScene.player.position = gameScene.playerLastKnownPosition
             gameScene.motionManager.stopAccelerometerUpdates()
+            gameScene.isPaused = true
             isGamePlaying.toggle()
-            
             // Implement timer...then stop timer here.
         }
     }
@@ -90,6 +89,7 @@ class GameViewController: UIViewController {
         view.alpha = 1.0
         
         gameScene.loadAirplane(at: level1, addToScene: true)
+        gameScene.isPaused = false
         gameScene.motionManager.startAccelerometerUpdates()
         isGamePlaying.toggle()
     }

@@ -26,33 +26,26 @@ struct StartingPositions {
 
 
 protocol AdjustScoreDelegate {
-    func update(score: Int)
-    func update(level: Int)
-    func update(lives: Int)
-    
-    var currentLevel: Int { get set }
-    var playerLives: Int { get set }
-    var currentScore: Int { get set }
+    func updateScore(amount: Int)
+    func updateLevel(amount: Int)
+    func updateLives(amount: Int)
 }
 
 
-class ScoreAndLevel: AdjustScoreDelegate {
-    var currentLevel = 1
-    var playerLives = 3
-    var currentScore = 0
-    
-    let defaults = UserDefaults.standard
+struct ScoreAndLevel: AdjustScoreDelegate {
+    static var currentLevel = 1
+    static var playerLives = 3
+    static var currentScore = 0
         
-    func update(level: Int) {
-        currentLevel += level
-        defaults.set(currentScore, forKey: "level")
+    func updateLevel(amount: Int) {
+        ScoreAndLevel.currentLevel += amount
     }
     
-    func update(lives: Int) {
-        playerLives += lives
+    func updateLives(amount: Int) {
+        ScoreAndLevel.playerLives += amount
     }
     
-    func update(score: Int) {
-        currentScore += score
+    func updateScore(amount: Int) {
+        ScoreAndLevel.currentScore += amount
     }
 }
