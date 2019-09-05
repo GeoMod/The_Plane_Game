@@ -11,6 +11,19 @@ import SpriteKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        print(">>> Game Sfene INIT")
+    }
+    
+    override init(size: CGSize) {
+        super.init(size: size)
+        print(">>> Other kind of init")
+    }
+    
+    deinit {
+        print(">>> GAME SCENE DEINIT")
+    }
     weak var viewController: GameViewController!
 //    var motionManager: CMMotionManager!
     let motionManager = CMMotionManager()
@@ -76,7 +89,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         updatePlayerAccelerationFromMotionManager()
         updatePlayer(deltaTime)
-        
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
@@ -104,12 +116,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 case 1:
                     // Load level 2
                     print("Load Level2")
-//                    let newGame = GameScene(size: self.size)
-//                    newGame.viewController = self.viewController
-//                    self.viewController.gameScene = newGame
                     
-                    if let scene = SKScene(fileNamed: "LevelTwo") {
+                    if let scene = SKScene(fileNamed: "LevelTwo") as? GameScene {
                         scene.scaleMode = .aspectFill
+                        scene.viewController = self.viewController
+                        self.viewController?.gameScene = scene
                         self.view?.presentScene(scene, transition: .fade(withDuration: 1.0))
                     }
                 case 2:
@@ -164,9 +175,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             scoreDelegate.updateLives(amount: -1)
             viewController.livesLabel.text = "Lives: \(Score.playerLives)"
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                self.loadAirplane(at: self.viewController.planeStartingPosition, addToScene: true)
-            }
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+//                self.loadAirplane(at: self.viewController.planeStartingPosition, addToScene: true)
+//            }
         } else if Score.playerLives == 0 {
             viewController.centerStartButtonTitle.setTitle("Game Over", for: .normal)
             viewController.centerStartButtonTitle.isHidden = false
