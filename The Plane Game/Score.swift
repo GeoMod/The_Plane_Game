@@ -28,7 +28,7 @@ protocol AdjustScoreDelegate {
 
 
 struct Score: AdjustScoreDelegate {
-    static var currentLevel = 0
+    static var currentLevel = 1
     static var playerLives = 3
     static var currentScore = 0
         
