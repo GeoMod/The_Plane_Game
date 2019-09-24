@@ -5,31 +5,47 @@
 //  Created by Daniel O'Leary on 8/2/19.
 //  Copyright © 2019 Impulse Coupled Dev. All rights reserved.
 //
-
 import SpriteKit
 import UIKit
 
 class GameViewController: UIViewController {
     
     @IBOutlet weak var scoreLabel: UILabel!
+    @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var livesLabel: UILabel!
     @IBOutlet weak var playPauseButtonTitle: UIButton!
     @IBOutlet weak var centerStartButtonTitle: UIButton!
     
     var scoreDelegate: AdjustScoreDelegate!
     var gameScene: GameScene!
+    var timer: Timer?
     
     var isGamePlaying = false
-    
+    let formatter = DateComponentsFormatter()
     let planeStartingPosition = CGPoint(x: 819, y: 181)
+    
+    var score = 0 {
+        didSet {
+            scoreLabel.text = "Score: \(score)"
+        }
+    }
+    
+    var seconds = 90.0 {
+        didSet {
+            timerLabel.text = timeFormatter(time: seconds)
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         scoreDelegate = Score()
         
         centerStartButtonTitle.setTitle("Tap to Play", for: .normal)
+        timerLabel.text = timeFormatter(time: seconds)
         loadLevel()
     }
+    
+    
     
     // Load the scene and level
     func loadLevel() {
@@ -47,11 +63,10 @@ class GameViewController: UIViewController {
             
             view.ignoresSiblingOrder = true
             
-            view.showsFPS = true
-            view.showsNodeCount = true
+//            view.showsFPS = true
+//            view.showsNodeCount = true
         }
     }
-    
     
     @IBAction func playPauseTapped(_ sender: UIButton) {
         switch isGamePlaying {
@@ -60,8 +75,7 @@ class GameViewController: UIViewController {
             beginGamePlay()
         case true:
             // Game is running but we want to pause.
-            // Use in iOS13
-//            playPauseButtonTitle.setBackgroundImage(UIImage(systemName: "play.circle.fill"), for: .normal)
+            playPauseButtonTitle.setBackgroundImage(UIImage(systemName: "play.circle.fill"), for: .normal)
             centerStartButtonTitle.setTitle("Paused", for: .normal)
             centerStartButtonTitle.isHidden = false
             view.alpha = 0.5
@@ -79,8 +93,7 @@ class GameViewController: UIViewController {
     }
     
     func beginGamePlay() {
-        // Use in iOS13
-//        playPauseButtonTitle.setBackgroundImage(UIImage(systemName: "pause.circle.fill"), for: .normal)
+        playPauseButtonTitle.setBackgroundImage(UIImage(systemName: "pause.circle.fill"), for: .normal)
         playPauseButtonTitle.isHidden = false
         
         centerStartButtonTitle.isHidden = true
@@ -90,6 +103,9 @@ class GameViewController: UIViewController {
         gameScene.loadAirplane(at: planeStartingPosition, addToScene: true)
         gameScene.isPaused = false
         gameScene.motionManager.startAccelerometerUpdates()
+        
+        scheduleTimer()
+        
         isGamePlaying.toggle()
     }
     
@@ -98,9 +114,10 @@ class GameViewController: UIViewController {
         func playerCollided(with node: SKNode) {
             if node.name == "runway" {
                 // Consider making the number of points added = the number of seconds remaining on the timer
-                scoreDelegate.updateScore(amount: 100)
+//                scoreDelegate.updateScore(amount: 100)
+                score += 100
                 scoreDelegate.updateLevel(amount: 1)
-                scoreLabel.text = "Score: \(Score.currentScore)"
+//                scoreLabel.text = "Score: \(Score.currentScore)"
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                     self.gameScene.player.removeFromParent()
@@ -140,8 +157,8 @@ class GameViewController: UIViewController {
                 if let fireExplosion = SKEmitterNode(fileNamed: "TowerFireExplosion") {
                     fireExplosion.position = gameScene.player.position
                     gameScene.addChild(fireExplosion)
-                    gameScene.update(-100)
-                    scoreLabel.text = "Score: \(Score.currentScore)"
+                    
+                    score -= 100
                     
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
                         if let treeFire = SKEmitterNode(fileNamed: "TreeFire") {
@@ -154,8 +171,9 @@ class GameViewController: UIViewController {
                 if let groundImpact = SKEmitterNode(fileNamed: "GroundImpact") {
                     groundImpact.position = gameScene.player.position
                     gameScene.addChild(groundImpact)
-                    scoreDelegate.updateScore(amount: -100)
-                    scoreLabel.text = "Score: \(Score.currentScore)"
+                    score -= 100
+//                    scoreDelegate.updateScore(amount: -100)
+//                    scoreLabel.text = "Score: \(Score.currentScore)"
                 }
             }
             gameScene.player.removeFromParent()
@@ -169,18 +187,45 @@ class GameViewController: UIViewController {
             } else if Score.playerLives == 0 {
                 centerStartButtonTitle.setTitle("Game Over", for: .normal)
                 centerStartButtonTitle.isHidden = false
-                Score.currentScore = 0
+//                Score.currentScore = 0
+                score = 0
                 Score.playerLives = 3
                 Score.currentLevel = 1
                 
                 // Reset lives and score labels.
-                scoreLabel.text = "Score: \(Score.currentScore)"
+//                scoreLabel.text = "Score: \(Score.currentScore)"
                 livesLabel.text = "Lives: \(Score.playerLives)"
             }
         }
     
+    func scheduleTimer() {
+        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { [weak self] (timer) in
+            
+            self?.score += 1
+            self?.seconds -= 1.0
+            
+//            if self?.score == 5 {
+//                let ac = UIAlertController(title: "Game Over", message: "You're a winner", preferredStyle: .alert)
+//                ac.addAction(UIAlertAction(title: "Yay Me!", style: .default, handler: nil))
+//                self?.present(ac, animated: true) {
+//                    timer.invalidate()
+//                    self?.score = 0
+//                }
+//            }
+        })
+    }
     
-
+    func timeFormatter(time: TimeInterval) -> String? {
+        formatter.unitsStyle = .positional
+        formatter.allowedUnits = [.minute,.second]
+        
+        guard let formattedTime = formatter.string(from: time) else {
+            fatalError("No time found.")
+        }
+        return formattedTime
+    }
+    
+    
     override var shouldAutorotate: Bool {
         return true
     }
