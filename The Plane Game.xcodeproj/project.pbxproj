@@ -72,9 +72,9 @@
 		180A6C9A22F4C9540046E330 /* The Plane Game */ = {
 			isa = PBXGroup;
 			children = (
-				180A6C9B22F4C9540046E330 /* AppDelegate.swift */,
 				1862F81422F66A69009591BE /* Level Scenes */,
 				18A36AB922FE1F8D00B41952 /* Particle Files */,
+				180A6C9B22F4C9540046E330 /* AppDelegate.swift */,
 				1862F81522F66A9C009591BE /* Score.swift */,
 				180A6CA122F4C9540046E330 /* GameScene.swift */,
 				182D9C7623022FC2004C3424 /* GameScene+Acceleration.swift */,

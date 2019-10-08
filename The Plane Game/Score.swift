@@ -21,8 +21,7 @@ enum CollisionTypes: UInt32 {
 
 
 protocol AdjustScoreDelegate {
-//    func updateScore(amount: Int)
-    func updateLevel(amount: Int)
+    func moveTo(level: Int)
     func updateLives(amount: Int)
 }
 
@@ -30,17 +29,12 @@ protocol AdjustScoreDelegate {
 struct Score: AdjustScoreDelegate {
     static var currentLevel = 1
     static var playerLives = 3
-//    static var currentScore = 0
         
-    func updateLevel(amount: Int) {
-        Score.currentLevel += amount
+    func moveTo(level: Int) {
+        Score.currentLevel = level
     }
     
     func updateLives(amount: Int) {
         Score.playerLives += amount
     }
-    
-//    func updateScore(amount: Int) {
-//        Score.currentScore += amount
-//    }
 }
